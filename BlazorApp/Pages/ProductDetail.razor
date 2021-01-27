@@ -1,0 +1,29 @@
+﻿@page "/Products/ProductDetail/{pId}"
+@page "/Products/ProductDetail/{pId}/{pId2:int}"
+
+@page "/Products/ProductDetail"
+@page "/Product"
+
+@inject IProductService productService
+@using BlazorApp.Data 
+
+<h3>AuthorDetail</h3>
+<hr />
+<div class="col-12 row">
+    <h5 class="col-12 row" style="font-weight:bold">@ProductDetail.Name @ProductDetail.Price  </h5>
+</div>
+
+@code {
+
+    public int ProductId { get; set; }
+
+    public Product ProductDetails { get; set; }
+    //public ProductService productService { get; set; }
+
+    protected override void OnInitialized()
+    {
+        //productService = ProductService();
+        ProductDetails = productService.GetProductById(ProductId);
+    }
+
+}
